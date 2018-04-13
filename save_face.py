@@ -31,7 +31,7 @@ def record_single_face():
                 tip = "Filter face failed!"; tip_color = (0, 255, 255)
 
         if(face_img_cnt["Left"] > 0 and face_img_cnt["Right"] > 0 and face_img_cnt["Center"] > 0):
-            tip = "Press 's' to save this record\nPress 'c' to clear this record"; tip_color = (0, 255, 255)
+            tip = "Press 's'/'c' to save/clear this record"; tip_color = (0, 255, 255)
             
         cv2.putText(frame, tip, (0, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, tip_color, 2, cv2.LINE_AA)
         cv2.imshow("Press 'q' to exit", frame)

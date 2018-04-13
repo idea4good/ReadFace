@@ -53,8 +53,8 @@ while True:
         face_attrs = the_face_attr_reader.get_face_attr(standard_faces)
         person_info = search_face(face_attrs, face_directions);
         for (i,rect) in enumerate(rects):
-            cv2.rectangle(frame, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (255,0,0)) #draw bounding box for the face
-            cv2.putText(frame, person_info[i], (rect[0] + rect[2], rect[1]),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,0),1,cv2.LINE_AA)
+            cv2.rectangle(frame, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (255,104,38)) #draw bounding box for the face
+            cv2.putText(frame, person_info[i], (rect[0] + rect[2], rect[1]),cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,104,38),1,cv2.LINE_AA)
 
     cv2.imshow("Press 'q' to exit", frame)
     if (cv2.waitKey(1) & 0xFF) == ord("q"):
