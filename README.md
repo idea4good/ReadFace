@@ -7,7 +7,7 @@ You can install Anaconda
 - If Anaconda, cmd: conda install -c conda-forge tensorflow
 
 ## Install opencv
-- If Anaconda, cmd: conda install -c menpo opencv
+- If Anaconda, cmd: conda install -c menpo opencv3
 
 ## Record face
 - cmd: python save_face.py
