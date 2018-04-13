@@ -4,7 +4,7 @@
 You can install Anaconda
 
 ## Install tensorflow
-- If Anaconda, cmd: conda install -c conda-forge tensorflow
+- If Anaconda, cmd: pip install --ignore-installed --upgrade tensorflow
 
 ## Install opencv
 - If Anaconda, cmd: conda install -c menpo opencv
