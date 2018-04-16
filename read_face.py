@@ -1,4 +1,4 @@
-import cv2, json, sys
+import cv2, json, sys, datetime
 import tensorflow as tf
 import numpy as np
 
@@ -7,7 +7,7 @@ from mtcnn_detect import c_MTCNNDetect
 from face_attr import c_face_attr_reader
 
 standard_faces_size = 160 # 160(weight) * 160(height)
-detect_resolution = 15 # 80(weight) * 80(height)
+detect_resolution = 80 # 80(weight) * 80(height)
 
 def search_face(face_attr, face_directions, diff_thres = 0.6, odds_thres = 70):
     ret = [];
@@ -25,8 +25,10 @@ def search_face(face_attr, face_directions, diff_thres = 0.6, odds_thres = 70):
 
         if odds <= odds_thres :
             ret.append("??")
+            print("??@ " + datetime.datetime.now().strftime("%H-%M-%S"))
         else:
             ret.append(name + ":" + str(odds) + "%")
+            print(name + '@ ' + datetime.datetime.now().strftime("%H-%M-%S"))
     return ret
 
 the_face_attr_reader = c_face_attr_reader(standard_faces_size)
