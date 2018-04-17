@@ -36,8 +36,14 @@ the_filter = c_face_filter();
 face_detect = c_MTCNNDetect(tf.Graph(), scale_factor=2); #scale_factor, rescales image for faster detection
 the_database = json.loads(open('./face_database.txt','r').read());
 
-print("Camera warming up...")
-vs = cv2.VideoCapture(0);
+vs = cv2.VideoCapture(0);# 0: default; 1: Microsoft lifecam
+
+vs.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
+vs.set(cv2.CAP_PROP_FRAME_HEIGHT,720)
+
+print(vs.get(cv2.CAP_PROP_FRAME_WIDTH))
+print(vs.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
 while True:
     _, frame = vs.read();
     rects, landmarks = face_detect.detect_face(frame, detect_resolution)
