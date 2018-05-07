@@ -36,7 +36,7 @@ the_filter = c_face_filter();
 face_detect = MTCNN(tf.Graph(), scale_factor=2); #scale_factor, rescales image for faster detection
 the_database = json.loads(open('./face_database.txt','r').read());
 
-vs = cv2.VideoCapture(1);# 0: default; 1: Microsoft lifecam
+vs = cv2.VideoCapture(0);# 0: default; 1: Microsoft lifecam
 
 vs.set(cv2.CAP_PROP_FRAME_WIDTH,1920)
 vs.set(cv2.CAP_PROP_FRAME_HEIGHT,1080)
