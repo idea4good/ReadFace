@@ -9,7 +9,7 @@ import tensorflow as tf
 import cv2
 import os
 
-class c_MTCNNDetect(object):
+class MTCNN(object):
     def __init__(self, face_rec_graph, model_path = "models", threshold = [0.6, 0.7, 0.7], factor = 0.709, scale_factor = 1):
         '''
         :param face_rec_sess: FaceRecSession
@@ -47,7 +47,7 @@ class c_MTCNNDetect(object):
 
 
 
-    def detect_face(self, img, minsize):
+    def detect_faces(self, img, minsize):
         # im: input image
         # minsize: minimum of faces' size
         if(self.scale_factor > 1):

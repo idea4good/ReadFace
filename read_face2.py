@@ -3,7 +3,7 @@ import tensorflow as tf
 import numpy as np
 
 from face_filter import c_face_filter
-from mtcnn_quick import MTCNN # customize mtcnn for quickly performance
+from mtcnn.mtcnn import MTCNN # pip install mtcnn
 from face_attr import c_face_attr_reader
 
 standard_faces_size = 160 # 160(weight) * 160(height)
@@ -32,9 +32,9 @@ def search_face(face_attr, face_directions, diff_thres = 0.6, odds_thres = 70):
     return ret
 
 the_face_attr_reader = c_face_attr_reader(standard_faces_size)
-the_filter = c_face_filter();
-face_detect = MTCNN(tf.Graph(), scale_factor=2); #scale_factor, rescales image for faster detection
-the_database = json.loads(open('./face_database.txt','r').read());
+the_filter = c_face_filter()
+face_detect = MTCNN()
+the_database = json.loads(open('./face_database.txt','r').read())
 
 vs = cv2.VideoCapture(1);# 0: default; 1: Microsoft lifecam
 
@@ -46,7 +46,12 @@ print(vs.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 while True:
     _, frame = vs.read();
-    rects, keypoints = face_detect.detect_faces(frame, detect_resolution)
+    face_list = face_detect.detect_faces(frame)
+    rects = [];keypoints = []
+    for i in face_list:
+        rects.append((i['box'][0], i['box'][1], i['box'][2], i['box'][3]))
+        keypoints.append([i['keypoints']['left_eye'][0], i['keypoints']['right_eye'][0], i['keypoints']['nose'][0], i['keypoints']['mouth_left'][0], i['keypoints']['mouth_right'][0],\
+                          i['keypoints']['left_eye'][1], i['keypoints']['right_eye'][1], i['keypoints']['nose'][1], i['keypoints']['mouth_left'][1], i['keypoints']['mouth_right'][1]])
 
     standard_faces = []; face_directions = []
     for (i, rect) in enumerate(rects):
